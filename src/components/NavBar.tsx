@@ -8,7 +8,7 @@ const NavBar = () => {
       <Flex alignItems={"center"}>
         <Image src={logo} boxSize="48px"></Image>
         <Show above="md">
-          <Heading as="h1" whiteSpace={"nowrap"} size={{ base: "md" }}>
+          <Heading as="h1" w="40" whiteSpace="nowrap" size={{ base: "md" }}>
             Game Browser
           </Heading>
         </Show>

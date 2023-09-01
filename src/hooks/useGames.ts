@@ -1,4 +1,5 @@
 import { useData } from "./useData";
+import { Genre } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -14,7 +15,13 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
 }
 
-export function useGames() {
-  const { data: games, error, isLoading } = useData<Game>("/games");
+export function useGames(selectedGenre: Genre | null) {
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
+    selectedGenre?.id,
+  ]);
   return { games, error, isLoading };
 }
