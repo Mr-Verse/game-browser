@@ -13,9 +13,10 @@ import { Genre } from "../hooks/useGenres";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { genres, error, isLoading } = useGenres();
 
   return (
@@ -24,7 +25,12 @@ const GenreList = ({ onSelectGenre }: Props) => {
       {isLoading && <Spinner color="dodgerblue" />}
       <List listStyleType="none" spacing={2}>
         {genres.map((genre) => (
-          <ListItem key={genre.id}>
+          <ListItem
+            key={genre.id}
+            borderRadius="10px"
+            p={1}
+            bg={genre.id === selectedGenre?.id ? "blackAlpha.200" : ""}
+          >
             <HStack>
               <Image
                 boxSize="32px"
@@ -35,7 +41,14 @@ const GenreList = ({ onSelectGenre }: Props) => {
                 fontSize="lg"
                 variant="link"
                 whiteSpace="pre-wrap"
+                justifyContent="start"
                 textAlign="start"
+                textDecoration={
+                  genre.id === selectedGenre?.id ? "underline" : "none"
+                }
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                px={2}
+                py={1}
                 onClick={() => onSelectGenre(genre)}
               >
                 {genre.name}
