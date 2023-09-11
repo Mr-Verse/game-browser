@@ -3,7 +3,11 @@ import logo from "../assets/react.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 
-const NavBar = () => {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+const NavBar = ({ onSearch }: Props) => {
   return (
     <Flex alignItems={"center"} px={"10px"} alignContent="space-between">
       <Flex alignItems={"center"} flexShrink={0}>
@@ -15,7 +19,7 @@ const NavBar = () => {
         </Show>
       </Flex>
       <Flex m={2} w="100%" justifySelf="center" justifyContent="center">
-        <SearchInput />
+        <SearchInput onSearch={onSearch} />
       </Flex>
       <ColorModeSwitch />
     </Flex>
