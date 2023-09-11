@@ -1,6 +1,6 @@
 import platformsStatic from "../data/platforms";
 
-interface Platform {
+export interface Platform {
   id: number;
   name: string;
   slug: string;
