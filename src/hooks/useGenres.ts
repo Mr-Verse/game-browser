@@ -1,4 +1,4 @@
-import { useData } from "./useData";
+import staticGenres from "../data/genres";
 
 export interface Genre {
   id: number;
@@ -8,7 +8,16 @@ export interface Genre {
 }
 
 export const useGenres = () => {
-  const { data: genres, error, isLoading } = useData<Genre>("/genres");
+  // const { data: genres, error, isLoading } = useData<Genre>("/genres");
+  const {
+    data: genres,
+    error,
+    isLoading,
+  } = {
+    data: staticGenres,
+    error: null,
+    isLoading: false,
+  };
 
   return { genres, error, isLoading };
 };
